@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(180deg, black 0%, #121118 100%);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Map container for zoomable area */
+        .map-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: grab;
+            user-select: none;
+            transform-origin: center center;
+        }
+
+        /* Location list */
+        .location-list {
+            background: #0E0E0E;
+            border-top: 1px solid white;
+            overflow-y: auto;
+            flex: 0.4;
+            padding: 10px;
+            font-size: 18px;
+            color: white;
+        }
+
+        .location-list-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid white;
+            padding-bottom: 5px;
+        }
+
+        /* Back button taskbar */
+        .taskbar {
+            height: 75px;
+            background: #15212C;
+            border-top: 1px solid #FFD369;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back-button {
+            color: #FFD369;
+            font-size: 48px;
+            font-family: 'Pixelify Sans', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+    </style>
+    <script>
+        let scale = 1; // Initial zoom level
+        let isPanning = false;
+        let startX = 0;
+        let startY = 0;
+
+        function enableMapInteraction() {
+            const map = document.querySelector('.map');
+
+            // Zoom functionality
+            map.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                scale += event.deltaY * -0.01; // Adjust zoom sensitivity
+                scale = Math.min(Math.max(1, scale), 4); // Limit zoom level
+                map.style.transform = `scale(${scale})`;
+            });
+
+            // Pan functionality
+            map.addEventListener('mousedown', (event) => {
+                isPanning = true;
+                startX = event.clientX - map.offsetLeft;
+                startY = event.clientY - map.offsetTop;
+                map.style.cursor = 'grabbing';
+            });
+
+            map.addEventListener('mousemove', (event) => {
+                if (!isPanning) return;
+                const x = event.clientX - startX;
+                const y = event.clientY - startY;
+                map.style.transform = `scale(${scale}) translate(${x / scale}px, ${y / scale}px)`;
+            });
+
+            map.addEventListener('mouseup', () => {
+                isPanning = false;
+                map.style.cursor = 'grab';
+            });
+
+            map.addEventListener('mouseleave', () => {
+                isPanning = false;
+                map.style.cursor = 'grab';
+            });
+        }
+
+        // Populate location list dynamically
+        function populateLocationList() {
+            const locations = [
+                "ฐานที่ 1",
+                "ฐานที่ 2",
+                "ฐานที่ 3",
+                "ฐานที่ 4",
+                "ฐานที่ 5"
+            ];
+            const list = document.querySelector('.location-list');
+            locations.forEach((location, index) => {
+                const item = document.createElement('div');
+                item.classList.add('location-list-item');
+                item.textContent = `${index + 1}. ${location}`;
+                list.appendChild(item);
+            });
+        }
+
+        // Initialize functions on page load
+        window.onload = () => {
+            enableMapInteraction();
+            populateLocationList();
+        };
+    </script>
+</head>
+<body>
+    <!-- Zoomable Map Container -->
+    <div class="map-container">
+        <img src="/images/map.png" alt="Interactive Map" class="map">
+    </div>
+
+    <!-- Location List -->
+    <div class="location-list"></div>
+
+    <!-- Taskbar with Back Button -->
+    
+        <button class="back-button" onclick="location.href='home.html'"><div class="taskbar">&lt;</div></button>
+    
+</body>
+</html>

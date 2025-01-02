@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, black 0%, #121118 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            font-family: 'Pixelify Sans', sans-serif;
+            background: #0E0E0E;
+            border: 1px solid white;
+            border-radius: 25px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 40px;
+            color: #FFD369;
+        }
+
+        /* Log list styling */
+        .log-list {
+            height: calc(100vh - 150px); /* Adjust height to fit the header and taskbar */
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .log-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .log-item.gold {
+            background: #FFD369;
+            color: black;
+        }
+
+        .log-item.silver {
+            background: #A9A9A9;
+            color: black;
+        }
+
+        .log-item.gray {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Taskbar-style back button */
+        .taskbar {
+            width: 100%;
+            height: 75px;
+            background: #15212C;
+            border-top: 1px solid #FFD369;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back-button {
+            color: #FFD369;
+            font-size: 48px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+    </style>
+    <script>
+        // Simulated log data
+        const logData = [
+            { time: "15:25", base: "ฐาน กระดึกทางหมา", reason: "กวนตีน", points: "-10" },
+            { time: "15:20", base: "ฐาน กระดึกทางหมา", reason: "ชนะ", points: "-2" },
+            { time: "15:15", base: "ฐาน อ่าวเฮ้ย ไม่เหมือนที่คุยกันไว้", reason: "ชนะ", points: "+2" },
+            { time: "15:10", base: "ฐาน ออมช่วยแบงค์", reason: "มาสาย", points: "-10" },
+            { time: "15:10", base: "ฐาน ออมช่วยแบงค์", reason: "มาสาย", points: "-10" },
+            { time: "15:10", base: "ฐาน ออมช่วยแบงค์", reason: "มาสาย", points: "-10" }
+        ];
+
+        function populateLog() {
+            const logContainer = document.getElementById("log-list");
+
+            logData.forEach((entry, index) => {
+                const logItem = document.createElement("div");
+                logItem.classList.add("log-item");
+
+                // Add class based on position
+                if (index === 0) logItem.classList.add("gold");
+                else if (index === 1) logItem.classList.add("silver");
+                else logItem.classList.add("gray");
+
+                logItem.innerHTML = `
+                    <div><strong>${entry.points}</strong></div>
+                    <div>Time: ${entry.time}</div>
+                    <div>${entry.base}</div>
+                    <div>สาเหตุ: ${entry.reason}</div>
+                `;
+                logContainer.appendChild(logItem);
+            });
+        }
+
+        // Populate log on page load
+        window.onload = populateLog;
+    </script>
+</head>
+<body>
+    &nbsp;
+    <div class="container">
+        <!-- Header -->
+        <div class="header">History</div>
+
+        <!-- Log List -->
+        <div id="log-list" class="log-list"></div>
+    </div>
+
+    <!-- Taskbar with Back Button -->
+    <div class="taskbar">
+        <button class="back-button" onclick="location.href='home.html'">&lt;</button>
+    </div>
+</body>
+</html>

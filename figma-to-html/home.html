@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Pixelify Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, black 0%, #121118 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main container */
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            color: #FFD369;
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 58px;
+            margin-bottom: 10px;
+        }
+
+        /* Score container styling */
+        .score-container {
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .score-value {
+            font-size: 48px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        /* Buttons styling */
+        .button {
+            background: #83817F;
+            color: black;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-align: center;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            margin: 10px auto;
+            width: 100%;
+            max-width: 250px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        /* Icon button styling (Yellow Squares) */
+        .icon-button {
+            background: #FFD369;
+            width: 73px;
+            height: 73px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .icon-button img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Row for bottom buttons */
+        .bottom-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Back button (top-left) */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #292929;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            color: #FFD369;
+        }
+    </style>
+    <script>
+        // Get the selected name from localStorage and update the title
+        window.onload = function() {
+            const selectedName = localStorage.getItem('selectedName');
+            if (selectedName) {
+                document.getElementById('title').textContent = selectedName;
+            }
+        };
+    </script>
+    
+</head>
+<body>
+    <button class="back-button" onclick="location.href='index.html'">&#x25C0;</button>
+    <div class="container">
+        <!-- Dynamic Title -->
+        <div id="title" class="title">Mimosa</div>
+
+        <!-- Score Display -->
+        <div class="score-container">
+            <div>Score</div>
+            <div class="score-value">69</div>
+        </div>
+
+        <!-- Buttons -->
+        <button class="button" onclick="location.href='score.html'">Score</button>
+        <button class="button" onclick="location.href='log.html'">Log</button>
+
+        <!-- Icon Buttons -->
+        <div class="bottom-buttons">
+            <button class="icon-button" onclick="location.href='qr.html'">
+                <img src="/images/qrcode.png" alt="QR Icon">
+            </button>
+            <button class="icon-button" onclick="location.href='map.html'">
+                <img src="/images/map.png" alt="Map Icon">
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+ 

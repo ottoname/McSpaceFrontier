@@ -1,0 +1,148 @@
+/* Import fonts and define custom font faces */
+@import url('https://rsms.me/inter/inter-ui.css');
+
+@font-face {
+    font-family: 'BLOKKRegular';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/128542/BLOKKRegular.woff2') format('woff2'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/128542/BLOKKRegular.woff') format('woff');
+}
+
+/* Define custom variables */
+:root {
+    --inter-ui: 'Inter UI', sans-serif;
+    --blokk: 'BLOKKRegular';
+}
+
+/* General styles */
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    font-family: var(--inter-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FFF;
+}
+
+/* Header styling */
+header {
+    padding: 1rem 2rem;
+    width: 100%;
+    height: 5rem;
+    box-sizing: border-box;
+    background-color: #281930;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: solid 1px #FFF;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 100%;
+    color: #FFF;
+}
+
+header #hamburger {
+    width: 3rem;
+    height: 3rem;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header #hamburger div {
+    margin: 0 auto;
+    width: 2rem;
+    height: 0.25rem;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #FFF;
+}
+
+header #hamburger div:before,
+header #hamburger div:after {
+    content: '';
+    background-color: inherit;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0;
+    top: -0.75rem;
+}
+
+header #hamburger div:after {
+    top: auto;
+    bottom: -0.75rem;
+}
+
+/* Main content area */
+main {
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+main #content {
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+    background-color: #FFF;
+    border-top: solid 1px #281930;
+    position: relative;
+}
+
+main #content #hint {
+    width: 100%;
+    position: absolute;
+    top: 1.8em;
+    left: 0;
+    text-align: center;
+    color: #999;
+    font-size: 0.65em;
+}
+
+main #content div {
+    margin: 0 0 4rem;
+    padding: 4rem 2rem 2rem;
+    box-sizing: border-box;
+    width: auto;
+    background-color: #EEE;
+    border-radius: 0.5rem;
+    position: relative;
+    overflow-wrap: break-word;
+}
+
+main #content div:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    to
+}

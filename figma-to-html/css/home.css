@@ -1,0 +1,12 @@
+body{
+    width: 402px;
+height: 874px;
+border-radius: 2px;
+background: linear-gradient(180deg, #000 0%, #121118 100%);
+font-family: 'Pixelify Sans', sans-serif;
+}
+@font-face {
+    font-family: 'Pixelify Sans';
+    src: url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+    font-display: swap;
+}

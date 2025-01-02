@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Pixelify Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, black 0%, #121118 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            margin-bottom: auto;
+        }
+
+        /* Leaderboard header */
+        .header {
+            background: #0E0E0E;
+            border: 1px solid white;
+            border-radius: 25px;
+            padding: 10px;
+            margin-bottom: 50px;
+            font-size: 40px;
+            color: #FFD369;
+        }
+
+        /* Leaderboard rows */
+        .leaderboard-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
+            border-radius: 15px 25px 25px 15px; /* Adds the dented effect */
+            margin: 10px 0;
+            padding: 30px 15px;
+            font-size: 25px;
+        }
+
+        .leaderboard-row.top {
+            background: #FFD369;
+            color: black;
+        }
+
+        /* Score section */
+        .score-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .score-square {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            background: transparent;
+            border: 2px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            border-radius: 10px;
+        }
+
+        /* Taskbar-style back button */
+        .taskbar {
+            width: 100%;
+            height: 75px;
+            background: #15212C;
+            border-top: 1px solid #FFD369;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .back-button {
+            color: #FFD369;
+            font-size: 48px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+    </style>
+    <script>
+        // Simulated leaderboard data (replace with backend or dynamic values)
+        const leaderboardData = [
+            { name: "Mimosa", score: 69 },
+            { name: "Erebus", score: 50 },
+            { name: "Sekhmet", score: 40 }
+        ];
+
+        function updateLeaderboard() {
+            const leaderboardContainer = document.getElementById('leaderboard');
+            leaderboardContainer.innerHTML = ''; // Clear existing leaderboard
+
+            leaderboardData.sort((a, b) => b.score - a.score); // Sort by score
+
+            // Populate leaderboard
+            leaderboardData.forEach((entry, index) => {
+                const row = document.createElement('div');
+                row.classList.add('leaderboard-row');
+                if (index === 0) row.classList.add('top'); // Highlight top score
+
+                row.innerHTML = `
+                    <div>${index + 1}</div>
+                    <div>${entry.name}</div>
+                    <div>${entry.score}</div>
+                `;
+
+                leaderboardContainer.appendChild(row);
+            });
+
+            // Update "Your Score" dynamically (assume the first user is "You")
+            const yourScore = document.getElementById('your-score');
+            yourScore.textContent = leaderboardData[0].score;
+        }
+
+        // Update leaderboard on page load
+        window.onload = updateLeaderboard;
+    </script>
+</head>
+<body>
+    <div class="container">
+        &nbsp;
+        <!-- Header -->
+        <div class="header">Leaderboard</div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard"></div>
+
+        <!-- Your Score Section -->
+        <div class="score-section">
+            <div class="label">Your Score</div>
+            <div id="your-score" class="score-square">69</div>
+        </div>
+    </div>
+
+    <!-- Taskbar with Back Button -->
+    <div class="taskbar">
+        <button class="back-button" onclick="location.href='home.html'">&lt;</button>
+    </div>
+</body>
+</html>
